@@ -1,0 +1,17 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+
+<fieldset class="fos_user_bundle">
+    <legend>Enregistrez-vous sur notre site</legend>
+
+        {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register' }}) }}
+            {{ form_widget(form) }}
+        <div class="right">
+            <input class="btn btn-primary" type="submit" value="{{ 'registration.submit'|trans }}" />
+        </div>
+        {{ form_end(form) }}
+
+</fieldset>
+
+

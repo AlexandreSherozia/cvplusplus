@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	
+	<div class="container">
+
+  		 <h2>here's your item !</h2>
+   	
+   		<div class = "jumbotron">
+
+
+			Article numéro {{ item.id }}  : <h3> {{ item.title | upper }} </h3>
+
+          <p> {{ item.description }}</p>
+
+
+   		</div>
+
+
+		<div class="jumbotron">
+			<h2>{{ test }}</h2>
+		</div>
+
+
+   </div>
+
+{% endblock %}
+{% block javascripts %}{% endblock %}

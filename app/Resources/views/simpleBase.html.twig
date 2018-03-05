@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}v++ {% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{{ asset('css/normalize.css') }}" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Anton|Pacifico" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
+        <script src="{{ asset('js/jquery-3.3.1.js') }}"></script>
+
+        <link rel="stylesheet" href="{{ asset('css/stylesheet.css') }}" />
+    {% endblock %}
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-default">
+        <div id="navbar">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{ path('homepage') }}">Accueil</a>
+            </div>
+            <ul class="nav navbar-nav">
+
+                {% if app.user %}
+                    <li><a href ="{{ path('myspace', {'slug': app.user.slug}) }}">Mon espace</a></li>
+                {% endif %}
+
+                <li><a href="{{ path('addheader') }}">Ajouter CV</a></li>
+
+                <li><a href="{{ path('listcurriculums') }}">Voir la CV-list</a></li>
+            </ul>
+
+        </div>
+    </nav>
+
+
+</header>
+<main class="container">
+    {% for message in app.session.flashbag.get('info') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% for message in app.session.flashbag.get('errors') %}
+        <div class="alert alert-danger">
+            Cher(e) {{ app.user.username }}, {{ message }}
+        </div>
+    {% endfor %}
+    {% block body %}{% endblock %}
+</main>
+<footer>
+
+    <img src="{{ asset('assets/logo_beta.png') }}" alt="logo_beta" id="logo-beta" />
+
+    <p><i class="fa fa-copyright" style="font-size:12px"></i> Cv++ 2017-{{ 'today'|date('Y') }}</p>
+    <p>Ce projet est réalisé dans le cadre de la validation du diplôme</p>
+
+    <p><a href="https://3wa.fr/">3W academy</a></p>
+
+</footer>
+
+<script src="{{ asset('js/myJs.js') }}"></script>
+
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function(){
+            $('p').addClass('empty');
+        });
+    </script>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,21 @@
+{% block field_errors %}
+    02
+    {% spaceless %}
+        03
+        {% if errors|length > 0 %}
+            04
+            <ul class="error_list">
+                05
+                {% for error in errors %}
+                    06
+                    <li>{{ error.messageTemplate|trans(error.messageParameters, 'validators') }}</li>
+                    07
+                {% endfor %}
+                08
+            </ul>
+            09
+        {% endif %}
+        10
+    {% endspaceless %}
+    11
+{% endblock field_errors %}

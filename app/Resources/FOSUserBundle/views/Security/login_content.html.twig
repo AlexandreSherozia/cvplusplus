@@ -1,0 +1,39 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% if error %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+
+
+    <fieldset class="fos_user_bundle">
+        <legend>Si vous avez un compte, identifiez-vous</legend>
+        <form action="{{ path("fos_user_security_check") }}" method="post">
+            {% if csrf_token %}
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+            {% endif %}
+
+            <div class="pad-top">Nom d'utilisateur/mail <span>*</span></div>
+            <label class="sr-only" for="username">{{ 'security.login.username'|trans }}</label>
+            <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="*" />
+
+            <div class="pad-top">Mot de passe <span>*</span></div>
+            <label class="sr-only" for="password">{{ 'security.login.password'|trans }}</label>
+            <input class="form-control" type="password" id="password" name="_password" required="required" placeholder="*" />
+
+            <div>
+                <input class="mini-inline" type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                <div class="inline">Rester connecté</div>
+                <label class="sr-only" for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+            </div>
+            <div class="right">
+                <a class="inline" href="{{ path('fos_user_resetting_check_email') }}">Mot de passe oublié?</a>
+                <input class="btn btn-primary" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans|upper }}" />
+            </div>
+
+            <div class="right">
+                <a class="btn btn-primary" id="_submit" href="{{ path('fos_user_registration_register') }}">{{ 'Sign Up'|upper }}</a>
+            </div>
+
+        </form>
+    </fieldset>
+

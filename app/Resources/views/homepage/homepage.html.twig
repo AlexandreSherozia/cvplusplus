@@ -1,0 +1,196 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }}Accueil
+{% endblock %}
+
+{% block body %}
+    <section class="homepage">
+       <article>
+
+            <h3>Pour bien démarrer</h3>
+
+           <p>Vous vous posez des questions comment créer un CV en sachant que cela pourrait prendre
+               des heures au détriment du plaisir à coder ?</p>
+           <p></p>
+
+           <p>Cette platforme vous facilitera la création d'un CV orienté vers les métiers de l'informatique.
+           Pour procéder à la création d'un CV après l'enregistrement sur notre platforme, un formulaire vous est proposé avec les 6 sections principales:
+           </p>
+
+           <ul>
+               <li>
+                    <div class="home-photo">
+                        <img src="{{ asset('assets/mr.Tombeur.jpg') }}" />
+                    </div>
+               </li>
+                <li>
+                    <h3>I. l'entête de votre CV</h3>
+
+                    <article>
+                        <p>Cette section comporte les principales informations sur votre identité:</p>
+                        <p>
+                            A) Titre *, qui apparaîtra en tant que profession fesant office de "catégorie" pour les recherches.
+                            Un large choix des métiers informatiques vous est proposé.
+                        </p>
+                        <p>
+                            B) Votre prénom *
+                        </p>
+                        <p>
+                            C) Votre nom *
+                        </p>
+                        <p>
+                            D) Adresse *
+                        </p>
+                        <p>
+                            E) Téléphone
+                        </p>
+                        <p>
+                            F) Messagerie *
+                        </p>
+
+                    </article>
+                </li>
+    <!-------------------------------------------- -->
+               <li>
+                   <div class="home-photo">
+                       <img src="{{ asset('assets/mr.Tombeur_skills.jpg') }}" />
+                   </div>
+               </li>
+
+                <li>
+                    <h3>II. Compétences</h3>
+
+                    <article>
+                        Dans la section "<span>Compétences</span>" il vous est demandé de remplir les champs "Domaine" et "Description". Pour le premier
+                        vous disposez de 30 caractères et 255 pour le second.
+                    </article>
+                </li>
+    <!-------------------------------------------- -->
+               <li>
+                   <div class="home-photo">
+                       <img src="{{ asset('assets/mr.Tombeur_formation.jpg') }}" />
+                   </div>
+               </li>
+                <li>
+                    <h3>III. Formation</h3>
+
+                    <p>
+                       Indiquez le nom de la formation informatique que vous avez réçue. Si vous vous autoformez, mettez vos
+                       principales sources d'apprentissage, vos références web.
+                    </p>
+                </li>
+
+               <!-------------------------------------------- -->
+
+               <li>
+                   <div class="home-photo">
+                       <img src="{{ asset('assets/mr.Tombeur_experience.jpg') }}" />
+                   </div>
+               </li>
+                <li>
+                    <h3>IV. Expériences</h3>
+                    <p>
+                        Parlez de vos expériences professionnelles. les champs "Domaine" et "Description" vous sont proposés.
+                    </p>
+                </li>
+               <!-------------------------------------------- -->
+
+               <li>
+                   <div class="home-photo">
+                       <img src="{{ asset('assets/mr.Tombeur_travaux.jpg') }}" />
+                   </div>
+               </li>
+                <li>
+                    <h3>V. Travaux</h3>
+
+                    <p>
+                        Vous êtes invités à présenter vos travaux: collez les liens de votre portfolio, des sites que vous avez créé ou
+                        de n'importe quelle page web que vous avez participé. Les champs "URL" sont définis à cet effet.
+                    </p>
+                    <p>
+                        <span>!mportant:</span> mettez vos liens précedés du protocole "http", "https". Autrement,
+                            ces liens ne seront pas validés par le formulaire.
+                    </p>
+                </li>
+
+               <!-------------------------------------------- -->
+
+               <li>
+                   <div class="home-photo">
+                       <img src="{{ asset('assets/mr.Tombeur_loisirs.jpg') }}" />
+                   </div>
+               </li>
+                <li>
+                  <h3>VI. Loisirs</h3>
+
+                   <p>
+                       Tout travail mérite un repos !<br />
+                       Parlez de vos loisirs. Toujours le même style vous est proposé: "secteur d'activité" et sa "Description".
+                   </p>
+                </li>
+           </ul>
+
+           <p>
+               Vous auriez remarqué, les sectoins sont proposées dans le "style" informatique: "clé" => "valeur", ("Domaine" et sa "Description").
+           </p>
+
+           <p>
+               Pour des raisons d'une meilleure visibilité, dans le champs "clé" vous disposez de 30 caractères,
+               255 pour le "Description".
+           </p>
+
+           <div class="important"><img id="tips-logo" src="{{ asset('assets/tips-logo.png') }}">
+               <p>
+                   Les champs avec astérisques sont requis. Si
+                   votre application ne vous permet pas de valider le formulaire à la fin de la création de votre CV(bouton "Enregistrer"), c'est que vous n'avez
+                   pas rempli un ou plusieurs champs obligatoires. Revenez en arrière et retrouvez facilement le champ en question,
+                   entouré du rouge.
+               </p>
+               <p>
+                   Notez, que vous ne pouvez pas publier plus d'un CV sur l'espace publique, "CV-liste".
+                   Si vous désirez rendre visible un autre CV depuis votre espace personnel, vous devriez
+                   au préalable retirer votre CV publié et remplacer par celui que vous préférez.
+               </p>
+           </div>
+
+           <p>
+               Le champ "photo" n'est pas requis, mais il est mieux de vous montrer auprès de votre potenciel recruteur.
+           </p>
+
+
+
+            <p>
+                Après avoir terminé la création de votre CV, vous pouvez le partager sur les réseaux sociaux, ou télécharger en
+                format PDF.
+            </p>
+
+
+           <button id="show-cv-exemple" class="btn btn-success">Montrer un exemple de CV</button>
+
+           <img id="cv-exemple" src="{{ asset('assets/cv_exemple.jpg') }}" />
+
+           <p class="htmltopdf-message">
+               * <span>!mportant:</span> si vous n'arrivez pas à télécharger un PDF, probablement,
+               vous n'avez pas de <a href="https://wkhtmltopdf.org/downloads.html">wkhtmltopdf</a> installé
+               sur votre machine. Dans ce cas, il suffit de suivre le <a href="https://wkhtmltopdf.org/downloads.html">lien</a> et l'installer selon
+               le système d'exploitation de votre ordinateur.
+           </p>
+
+       </article>
+        <!-- AddToAny BEGIN -->
+        <div id="share-box" class="a2a_kit a2a_kit_size_32 a2a_default_style">
+
+            <a class="a2a_button_facebook"></a>
+            <a class="a2a_button_twitter"></a>
+            <a class="a2a_button_google_plus"></a>
+            <a class="a2a_button_email"></a>
+        </div>
+        <script async src="https://static.addtoany.com/menu/page.js"></script>
+        <!-- AddToAny END -->
+
+    </section>
+
+
+{% endblock %}
+{% block javascripts %}{% endblock %}

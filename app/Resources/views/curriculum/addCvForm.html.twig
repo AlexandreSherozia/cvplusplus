@@ -1,0 +1,710 @@
+{% extends 'simpleBase.html.twig' %}
+
+{% form_theme form 'form/error.html.twig'%}
+
+{% block title %}
+    {{ parent() }}ajouter un CV
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+
+
+        {{ form_start(form) }}
+
+
+
+            <div class="formgroup">
+
+                <ul id="progressbar">
+                    <li class="active">Entête
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </li>
+                    <li>Compétences
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </li>
+                    <li>Formations
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </li>
+                    <li>Expériences
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </li>
+                    <li>Travaux
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </li>
+                    <li>Loisirs</li>
+                </ul>
+
+                <fieldset id="first">
+                    <legend>Etape 1 / 6</legend>
+
+
+
+                    {% if form_errors(form.image.imageFile) is not empty %}
+                        <div class="error-wrapper-inline-equal">
+                            {{ form_errors(form.image.imageFile) }}
+                            {{ form_widget(form.image.imageFile) }}
+                        </div>
+                    {% else %}
+                        <div class="photo-uploader">
+                            <div class="photo-uploader-popup">
+                                <p>Résolution idéale</p>
+                                <img src="{{ asset('assets/mr.Tombeur.jpg') }}" alt="cv" />
+                                <p>1Mo max. jpeg/png</p>
+                            </div>
+                            {{ form_widget(form.image.imageFile) }}
+                        </div>
+                    {% endif %}
+
+                    {% if form_errors(form.title) is not empty %}
+                        <div class="error-wrapper-inline-equal">
+                            {{ form_errors(form.title) }}
+                            {{ form_widget(form.title) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.title, { 'attr': {'class': 'inline-equal'} }) }}
+                    {% endif %}
+
+
+                    {% if form_errors(form.firstName) is not empty %}
+                        <div class="error-wrapper-inline-equal">
+                            {{ form_errors(form.firstName) }}
+                            {{ form_widget(form.firstName, { 'attr': {'placeholder': 'Prénom *'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.firstName, { 'attr': {'class': 'inline-equal',
+                            'placeholder': 'Prénom *'} }) }}
+                    {% endif %}
+
+
+                    {% if form_errors(form.name) is not empty %}
+                        <div class="error-wrapper-inline-equal">
+                            {{ form_errors(form.name) }}
+                            {{ form_widget(form.name, { 'attr': {'placeholder': 'Nom *'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.name, { 'attr': {'class': 'inline-equal',
+                            'placeholder': 'Nom *'} }) }}
+                    {% endif %}
+
+
+                    <div id="address-input">
+                        {% if form_errors(form.address) is not empty %}
+                            <div class="error-wrapper-inline-full">
+                                {{ form_errors(form.address) }}
+                                {{ form_widget(form.address, { 'attr': {'class': 'block',
+                                    'placeholder': 'Adresse *'} }) }}
+                            </div>
+                        {% else %}
+                            {{ form_widget(form.address, { 'attr': {'class': 'block',
+                                'placeholder': 'Adresse *'} }) }}
+                        {% endif %}
+
+
+                        {% if form_errors(form.zip) is not empty %}
+                            <div class="error-wrapper-mini-inline">
+                                {{ form_errors(form.zip) }}
+                                {{ form_widget(form.zip, { 'attr': {'placeholder': 'Code postal *'} }) }}
+                            </div>
+                        {% else %}
+                            {{ form_widget(form.zip, { 'attr': {'class': 'mini-inline',
+                                'placeholder': 'Code postal *'} }) }}
+                        {% endif %}
+
+
+
+                        {% if form_errors(form.city) is not empty %}
+                            <div class="error-wrapper-inline">
+                                {{ form_errors(form.city) }}
+                                {{ form_widget(form.city, { 'attr': {'placeholder': 'Ville *'} }) }}
+                            </div>
+                        {% else %}
+                            {{ form_widget(form.city, { 'attr': {'class': 'inline',
+                                'placeholder': 'Ville *'} }) }}
+                        {% endif %}
+
+
+
+                    </div>
+
+                    <div id="coord-input">
+                        {% if form_errors(form.telephone) is not empty %}
+                            <div class="error-wrapper-inline-full">
+                                {{ form_errors(form.telephone) }}
+                                {{ form_widget(form.telephone, { 'attr': {'placeholder': 'Téléphone *'} }) }}
+                            </div>
+                        {% else %}
+                            {{ form_widget(form.telephone, { 'attr': {'class': 'block',
+                                'placeholder': 'Téléphone *'} }) }}
+                        {% endif %}
+
+                        <p class="block" id="mail">
+                            <i class="fa fa-check-circle" aria-hidden="true"></i>
+                            {{ app.user.email }}
+                        </p>
+                    <p id="mail-message" class="block">
+                        Pour les mesures de confort et de securité
+                        votre email est définie automatiquement.
+                    </p>
+
+                    </div>
+                    <p>Champs avec * (astérisque) sont obligatoires</p>
+                    <button class="next_btn" name="next">
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </button>
+                </fieldset>
+
+    <!----------------------ADD SKILLS / COMPETENCES ------------------------>
+
+
+                <fieldset>
+                    <legend>Etape 2 / 6</legend>
+                <article>
+
+                    <div class="mini-inline">
+                        <p>Mettez les langages informatiques, que vous maîtrisez.</p>
+                    </div>
+
+                    {% if form_errors(form.skills.languages) is not empty %}
+                        <div class="error-wrapper-inline">
+                            {{ form_errors(form.skills.languages) }}
+                            {{ form_widget(form.skills.languages, { 'attr': {'placeholder': 'Langages informatiques (séparés de virgules) *. (255)'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.skills.languages, { 'attr': {'class': 'inline',
+                            'placeholder': 'Langages informatiques (séparés de virgules) *'} }) }}
+                    {% endif %}
+                </article>
+
+                <article>
+                    {% if form_errors(form.skills.sector1) is not empty %}
+                        <div class="error-wrapper-mini-inline">
+                            {{ form_errors(form.skills.sector1) }}
+                            {{ form_widget(form.skills.sector1, { 'attr': {'placeholder': 'Domaine informatique. (30)'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.skills.sector1, { 'attr': {'class': 'mini-inline',
+                            'placeholder': 'Domaine informatique'} }) }}
+                    {% endif %}
+
+
+
+                    {% if form_errors(form.skills.sector1Content) is not empty %}
+                        <div class="error-wrapper-inline">
+                            {{ form_errors(form.skills.sector1Content) }}
+                            {{ form_widget(form.skills.sector1Content, { 'attr': {'placeholder': 'Description. (255)'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.skills.sector1Content, { 'attr': {'class': 'inline',
+                            'placeholder': 'Description'} }) }}
+                    {% endif %}
+
+
+                </article>
+
+                <article>
+
+                    {% if form_errors(form.skills.sector2) is not empty %}
+                        <div class="error-wrapper-mini-inline">
+                            {{ form_errors(form.skills.sector2) }}
+                            {{ form_widget(form.skills.sector2, { 'attr': {'placeholder': 'Domaine informatique/autre. (30)'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.skills.sector2, { 'attr': {'class': 'mini-inline',
+                            'placeholder': 'Domaine'} }) }}
+                    {% endif %}
+
+
+
+                    {% if form_errors(form.skills.sector2Content) is not empty %}
+                        <div class="error-wrapper-inline">
+                            {{ form_errors(form.skills.sector2Content) }}
+                            {{ form_widget(form.skills.sector2Content, { 'attr': {'placeholder': 'Description. (255)'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.skills.sector2Content, { 'attr': {'class': 'inline',
+                            'placeholder': 'Description'} }) }}
+                    {% endif %}
+
+                </article>
+
+
+                <article>
+
+
+                    {% if form_errors(form.skills.sector3) is not empty %}
+                        <div class="error-wrapper-mini-inline">
+                            {{ form_errors(form.skills.sector3) }}
+                            {{ form_widget(form.skills.sector3, { 'attr': {'placeholder': 'Domaine informatique/autre. (30)'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.skills.sector3, { 'attr': {'class': 'mini-inline',
+                            'placeholder': 'Domaine'} }) }}
+                    {% endif %}
+
+
+
+                    {% if form_errors(form.skills.sector3Content) is not empty %}
+                        <div class="error-wrapper-inline">
+                            {{ form_errors(form.skills.sector3Content) }}
+                            {{ form_widget(form.skills.sector3Content, { 'attr': {'placeholder': 'Description. (255)'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.skills.sector3Content, { 'attr': {'class': 'inline',
+                            'placeholder': 'Description'} }) }}
+                    {% endif %}
+
+                </article>
+
+
+                    <p>Champs avec * (astérisque) sont obligatoires</p>
+
+                    <button class="pre_btn" name="previous">
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    </button>
+
+                    <button class="next_btn" name="next">
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </button>
+                </fieldset>
+
+     <!----------------------ADD FORMATION / EDUCATION ------------------------>
+
+                <fieldset>
+                    <legend>Etape 3 / 6</legend>
+
+                <article>
+                    <div class="mini-inline">
+                        <p>Indiquez la formation informatique, ou vos sources autoformantes suivies.</p>
+                    </div>
+
+                    {% if form_errors(form.education.informatics) is not empty %}
+                        <div class="error-wrapper-inline">
+                            {{ form_errors(form.education.informatics) }}
+                            {{ form_widget(form.education.informatics, { 'attr': {'placeholder': 'L\'intitulé de la formation/Nom d\'université ou école *'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.education.informatics, { 'attr': {'class': 'inline',
+                            'placeholder': 'L\'intitulé de la formation/Nom d\'université ou école *'} }) }}
+                    {% endif %}
+                </article>
+                <article>
+                    {% if form_errors(form.education.otherSector1) is not empty %}
+                        <div class="error-wrapper-mini-inline">
+                            {{ form_errors(form.education.otherSector1) }}
+                            {{ form_widget(form.education.otherSector1, { 'attr': {'placeholder': 'Autre domaine'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.education.otherSector1, { 'attr': {'class': 'mini-inline',
+                            'placeholder': 'Autre domaine'} }) }}
+                    {% endif %}
+
+
+
+                    {% if form_errors(form.education.otherSector1Content) is not empty %}
+                        <div class="error-wrapper-inline">
+                            {{ form_errors(form.education.otherSector1Content) }}
+                            {{ form_widget(form.education.otherSector1Content, { 'attr': {'placeholder': 'L\'intitulé de la formation/Nom d\'université ou école'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.education.otherSector1Content, { 'attr': {'class': 'inline',
+                            'placeholder': 'L\'intitulé de la formation/Nom d\'université ou école'} }) }}
+                    {% endif %}
+                </article>
+
+                <article>
+                    {% if form_errors(form.education.otherSector2) is not empty %}
+                        <div class="error-wrapper-mini-inline">
+                            {{ form_errors(form.education.otherSector2) }}
+                            {{ form_widget(form.education.otherSector2, { 'attr': {'placeholder': 'Autre domaine'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.education.otherSector2, { 'attr': {'class': 'mini-inline',
+                            'placeholder': 'Autre domaine'} }) }}
+                    {% endif %}
+
+
+
+                    {% if form_errors(form.education.otherSector2Content) is not empty %}
+                        <div class="error-wrapper-inline">
+                            {{ form_errors(form.education.otherSector2Content) }}
+                            {{ form_widget(form.education.otherSector2Content, { 'attr': {'placeholder': 'L\'intitulé de la formation/Nom d\'université ou école'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.education.otherSector2Content, { 'attr': {'class': 'inline',
+                            'placeholder': 'L\'intitulé de la formation/Nom d\'université ou école'} }) }}
+                    {% endif %}
+                </article>
+
+                <article>
+                    {% if form_errors(form.education.otherSector3) is not empty %}
+                        <div class="error-wrapper-mini-inline">
+                            {{ form_errors(form.education.otherSector3) }}
+                            {{ form_widget(form.education.otherSector3, { 'attr': {'placeholder': 'Autre domaine'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.education.otherSector3, { 'attr': {'class': 'mini-inline',
+                            'placeholder': 'Autre domaine'} }) }}
+                    {% endif %}
+
+
+
+                    {% if form_errors(form.education.otherSector3Content) is not empty %}
+                        <div class="error-wrapper-inline">
+                            {{ form_errors(form.education.otherSector3Content) }}
+                            {{ form_widget(form.education.otherSector3Content, { 'attr': {'placeholder': 'L\'intitulé de la formation/Nom d\'université ou école'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.education.otherSector3Content, { 'attr': {'class': 'inline',
+                            'placeholder': 'L\'intitulé de la formation/Nom d\'université ou école'} }) }}
+                    {% endif %}
+                </article>
+
+                    <p>Champs avec * (astérisque) sont obligatoires</p>
+
+                    <button class="pre_btn" name="previous">
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+
+                    </button>
+
+                    <button class="next_btn" name="next">
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </button>
+
+
+                </fieldset>
+
+
+    <!--  ADD EXPERIENCES  ---------------------------------------------------------------------->
+
+
+                <fieldset>
+                    <legend>Etape 4 / 6</legend>
+
+                    <div class="mini-inline">
+                        <p>Expériences informatiques/stages, sinon
+                             complétez par vos expériences dans d'autres secteurs.</p>
+                    </div>
+
+                    {% if form_errors(form.experience.informatics) is not empty %}
+                        <div class="error-wrapper-inline">
+                            {{ form_errors(form.experience.informatics) }}
+                            {{ form_widget(form.experience.informatics, { 'attr': {'placeholder': 'Dernière Endroit/post/mission en informatique *'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.experience.informatics, { 'attr': {'class': 'inline',
+                            'placeholder': 'Dernière Endroit/post/mission en informatique *'} }) }}
+                    {% endif %}
+
+                <article>
+                    {% if form_errors(form.experience.otherSector1) is not empty %}
+                        <div class="error-wrapper-mini-inline">
+                            {{ form_errors(form.experience.otherSector1) }}
+                            {{ form_widget(form.experience.otherSector1, { 'attr': {'placeholder': 'Domaine informatique ou autre'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.experience.otherSector1, { 'attr': {'class': 'mini-inline',
+                            'placeholder': 'Autre domaine'} }) }}
+                    {% endif %}
+
+
+
+                    {% if form_errors(form.experience.otherSector1Content) is not empty %}
+                        <div class="error-wrapper-inline">
+                            {{ form_errors(form.experience.otherSector1Content) }}
+                            {{ form_widget(form.experience.otherSector1Content, { 'attr': {'placeholder': 'Description'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.experience.otherSector1Content, { 'attr': {'class': 'inline',
+                            'placeholder': 'Description'} }) }}
+                    {% endif %}
+                </article>
+
+                <article>
+                    {% if form_errors(form.experience.otherSector2) is not empty %}
+                        <div class="error-wrapper-mini-inline">
+                            {{ form_errors(form.experience.otherSector2) }}
+                            {{ form_widget(form.experience.otherSector2, { 'attr': {'placeholder': 'Domaine informatique ou autre'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.experience.otherSector2, { 'attr': {'class': 'mini-inline',
+                            'placeholder': 'Autre domaine'} }) }}
+                    {% endif %}
+
+
+
+                    {% if form_errors(form.experience.otherSector2Content) is not empty %}
+                        <div class="error-wrapper-inline">
+                            {{ form_errors(form.experience.otherSector2Content) }}
+                            {{ form_widget(form.experience.otherSector2Content, { 'attr': {'placeholder': 'Description'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.experience.otherSector2Content, { 'attr': {'class': 'inline',
+                            'placeholder': 'Description'} }) }}
+                    {% endif %}
+
+                </article>
+
+                <article>
+                    {% if form_errors(form.experience.otherSector3) is not empty %}
+                        <div class="error-wrapper-mini-inline">
+                            {{ form_errors(form.experience.otherSector3) }}
+                            {{ form_widget(form.experience.otherSector3, { 'attr': {'placeholder': 'Domaine informatique ou autre'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.experience.otherSector3, { 'attr': {'class': 'mini-inline',
+                            'placeholder': 'Autre domaine'} }) }}
+                    {% endif %}
+
+
+
+                    {% if form_errors(form.experience.otherSector3Content) is not empty %}
+                        <div class="error-wrapper-inline">
+                            {{ form_errors(form.experience.otherSector3Content) }}
+                            {{ form_widget(form.experience.otherSector3Content, { 'attr': {'placeholder': 'Description'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.experience.otherSector3Content, { 'attr': {'class': 'inline',
+                            'placeholder': 'Description'} }) }}
+                    {% endif %}
+
+                </article>
+
+                    <p>Champs avec * (astérisque) sont obligatoires</p>
+
+                    <button class="pre_btn" name="previous">
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+
+                    </button>
+
+                    <button class="next_btn" name="next">
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </button>
+
+                </fieldset>
+
+
+    <!--  ADD WORKS  ---------------------------------------------------------------------->
+
+
+                <fieldset>
+                    <legend>Etape 5 / 6</legend>
+
+                    <div class="block">
+                        <p>Collez les liens des portfolio/sites ou pages web sur lesquels vous avez travaillé</p>
+                    </div>
+                <article>
+                    {% if form_errors(form.works.url1) is not empty %}
+                    <div class="error-wrapper-inline-equal">
+                        {{ form_errors(form.works.url1) }}
+                        {{ form_widget(form.works.url1, { 'attr': {'placeholder': 'ex: http://nomdedomaine.com*'} }) }}
+                    </div>
+                    {% else %}
+                        {{ form_widget(form.works.url1, { 'attr': {'class': 'inline-equal',
+                            'placeholder': 'Au moins un URL *'} }) }}
+                    {% endif %}
+
+                    {% if form_errors(form.works.description1) is not empty %}
+                        <div class="error-wrapper-inline-equal">
+                            {{ form_errors(form.works.description1) }}
+                            {{ form_widget(form.works.description1, { 'attr': {'placeholder': 'Description, votre role, autres détails *'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.works.description1, { 'attr': {'class': 'inline-equal',
+                            'placeholder': 'Description, votre role, autres détails *'} }) }}
+                    {% endif %}
+                </article>
+
+                <article>
+                    {% if form_errors(form.works.url2) is not empty %}
+                        <div class="error-wrapper-inline-equal">
+                            {{ form_errors(form.works.url2) }}
+                            {{ form_widget(form.works.url2, { 'attr': {'placeholder': 'URL'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.works.url2, { 'attr': {'class': 'inline-equal',
+                            'placeholder': 'URL'} }) }}
+                    {% endif %}
+
+                    {% if form_errors(form.works.description2) is not empty %}
+                        <div class="error-wrapper-inline-equal">
+                            {{ form_errors(form.works.description2) }}
+                            {{ form_widget(form.works.description2, { 'attr': {'placeholder': 'Description, votre role, autres détails'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.works.description2, { 'attr': {'class': 'inline-equal',
+                            'placeholder': 'Description, votre role, autres détails'} }) }}
+                    {% endif %}
+                </article>
+
+                <article>
+                    {% if form_errors(form.works.url3) is not empty %}
+                        <div class="error-wrapper-inline-equal">
+                            {{ form_errors(form.works.url3) }}
+                            {{ form_widget(form.works.url3, { 'attr': {'placeholder': 'URL'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.works.url3, { 'attr': {'class': 'inline-equal',
+                            'placeholder': 'URL'} }) }}
+                    {% endif %}
+
+                    {% if form_errors(form.works.description3) is not empty %}
+                        <div class="error-wrapper-inline-equal">
+                            {{ form_errors(form.works.description3) }}
+                            {{ form_widget(form.works.description3, { 'attr': {'placeholder': 'Description, votre role, autres détails'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.works.description3, { 'attr': {'class': 'inline-equal',
+                            'placeholder': 'Description, votre role, autres détails'} }) }}
+                    {% endif %}
+                </article>
+
+                    <p>Champs avec * (astérisque) sont obligatoires</p>
+
+                    <button class="pre_btn" name="previous">
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    </button>
+
+                    <button class="next_btn" name="next">
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </button>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Etape 6 / 6</legend>
+
+                <article>
+                    {% if form_errors(form.hobby.area1) is not empty %}
+                        <div class="error-wrapper-mini-inline">
+                            {{ form_errors(form.hobby.area1) }}
+                            {{ form_widget(form.hobby.area1, { 'attr': {'placeholder': 'secteur d\'activité *'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.hobby.area1, { 'attr': {'class': 'mini-inline',
+                            'placeholder': 'secteur d\'activité *'} }) }}
+                    {% endif %}
+
+                    {% if form_errors(form.hobby.content1) is not empty %}
+                        <div class="error-wrapper-inline">
+                            {{ form_errors(form.hobby.content1) }}
+                            {{ form_widget(form.hobby.content1, { 'attr': {'placeholder': 'Détails *'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.hobby.content1, { 'attr': {'class': 'inline',
+                            'placeholder': 'Détails *'} }) }}
+                    {% endif %}
+                </article>
+
+                <article>
+                    {% if form_errors(form.hobby.area2) is not empty %}
+                        <div class="error-wrapper-mini-inline">
+                            {{ form_errors(form.hobby.area2) }}
+                            {{ form_widget(form.hobby.area2, { 'attr': {'placeholder': 'secteur d\'activité'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.hobby.area2, { 'attr': {'class': 'mini-inline',
+                            'placeholder': 'secteur d\'activité'} }) }}
+                    {% endif %}
+
+                    {% if form_errors(form.hobby.content2) is not empty %}
+                        <div class="error-wrapper-inline">
+                            {{ form_errors(form.hobby.content2) }}
+                            {{ form_widget(form.hobby.content2, { 'attr': {'placeholder': 'Détails'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.hobby.content2, { 'attr': {'class': 'inline',
+                            'placeholder': 'Détails'} }) }}
+                    {% endif %}
+                </article>
+
+                <article>
+                    {% if form_errors(form.hobby.area3) is not empty %}
+                        <div class="error-wrapper-mini-inline">
+                            {{ form_errors(form.hobby.area3) }}
+                            {{ form_widget(form.hobby.area3, { 'attr': {'placeholder': 'secteur d\'activité'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.hobby.area3, { 'attr': {'class': 'mini-inline',
+                            'placeholder': 'secteur d\'activité'} }) }}
+                    {% endif %}
+
+                    {% if form_errors(form.hobby.content3) is not empty %}
+                        <div class="error-wrapper-inline">
+                            {{ form_errors(form.hobby.content3) }}
+                            {{ form_widget(form.hobby.content3, { 'attr': {'placeholder': 'Détails'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.hobby.content3, { 'attr': {'class': 'inline',
+                            'placeholder': 'Détails'} }) }}
+                    {% endif %}
+                </article>
+
+                <article>
+                    {% if form_errors(form.hobby.area4) is not empty %}
+                        <div class="error-wrapper-mini-inline">
+                            {{ form_errors(form.hobby.area4) }}
+                            {{ form_widget(form.hobby.area4, { 'attr': {'placeholder': 'secteur d\'activité'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.hobby.area4, { 'attr': {'class': 'mini-inline',
+                            'placeholder': 'secteur d\'activité'} }) }}
+                    {% endif %}
+
+                    {% if form_errors(form.hobby.content4) is not empty %}
+                        <div class="error-wrapper-inline">
+                            {{ form_errors(form.hobby.content4) }}
+                            {{ form_widget(form.hobby.content4, { 'attr': {'placeholder': 'Détails'} }) }}
+                        </div>
+                    {% else %}
+                        {{ form_widget(form.hobby.content4, { 'attr': {'class': 'inline',
+                            'placeholder': 'Détails'} }) }}
+                    {% endif %}
+                </article>
+
+                    {% if form_errors(form.published) is not empty %}
+                        <div class="error-wrapper-inline-full">
+                            {{ form_errors(form.published) }}
+                            <label for="published" class="form-check">
+                                <div class="checkbox" id="published">
+                                    {{ form_widget(form.published) }}
+                                </div>
+                            </label>
+                        </div>
+                    {% else %}
+                        <label for="published" class="form-check">
+                            <div class="checkbox" id="published">
+                                {{ form_widget(form.published) }}
+                            </div>
+                            <p class="checkbox-text">Je désire publier ce CV et le rendre visible dans la CV-liste</p>
+                        </label>
+                    {% endif %}
+
+
+
+                    <p>Champs avec * (astérisque) sont obligatoires</p>
+
+                    <button class="pre_btn" name="previous">
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    </button>
+
+
+                    <div class="block">
+                        <h3>* Vous pourrez modifier ces informations à tout moment</h3>
+                    </div>
+                    <a class="btn btn-default" href="{{ path('myspace', {'slug': app.user.slug}) }}">Abandonner</a>
+                    {{ form_widget(form.enregistrer, { 'attr': {'class' : 'btn btn-primary'}}) }}
+
+
+                </fieldset>
+
+            </div>
+
+            {{ form_rest(form) }}<!-- Rajoute les tockens, sans ce code - Erreur!!-->
+        {{ form_end(form) }}
+
+    </div>
+
+
+{% endblock %}
+{% block javascripts %}{% endblock %}

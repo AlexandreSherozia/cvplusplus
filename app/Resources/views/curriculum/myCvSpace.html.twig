@@ -1,0 +1,129 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }}my space
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+
+        <div class="minheight">
+            {% for item in myCvList %}
+                <div id="popup-delete">
+                    <p>ATTENTION !</p>
+
+                    <P>Vous êtes en train de supprimer un de vos CV.</P>
+
+                    <p>Etes vous sûr de vouloir continuer ?</P>
+
+                    <a class="btn btn-primary" href="{{ path('removeItem', {'id': item.id}) }}">OUI
+                    </a>
+
+                    <button class="btn btn-default" id="cancel">NON</button>
+                </div>
+        {% endfor %}
+
+
+
+            <h2>Espace personnel de {{ app.user }}</h2>
+
+            {% for message in app.session.flashbag.get('warning') %}
+                <div class="alert alert-warning">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+            <table class = "table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Vous avez des CVs dans les catégories suivantes:</th>
+                    <th scope="col">Date de publication</th>
+                    <th scope="col">
+                        Voir
+                    </th>
+                    <th scope="col">
+                        Editer
+                    </th>
+                    <th scope="col">
+                        Supprimer
+                    </th>
+                    <th scope="col">
+                        Générer PDF
+                    </th>
+                    <th scope="col">
+                        Publier
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for item in myCvList %}
+
+
+
+
+
+                    <tr>
+
+                        <td scope="row">{{ item.title | upper }}</td>
+
+
+
+                        <td>{{ item.date|date('d/m/Y') }}</td>
+
+                        <td>
+                            <a href ="{{ path('onecurriculum', {'slug': item.slug}) }}">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </a>
+                        </td>
+
+                        {% if app.user %}
+
+                            {% if item.isAuthor(app.user) or app.user.hasRole('ROLE_ADMIN') %}
+
+                                <td>
+                                    <a href ="{{ path('editcurriculum', {'slug': item.slug}) }}">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+
+                                <td>
+                                    <button class="delete">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </button>
+                                </td>
+
+                                <td>
+                                    <a href ="{{ path('generatePdf', {'id': item.id}) }}">
+                                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+
+                                <td>
+
+                                </td>
+
+                            {% endif %}
+
+                        {% endif %}
+
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+
+        </div>
+
+        <p class="htmltopdf-message">
+            * Attention: si vous n'arrivez pas à télécharger un PDF, probablement,
+            vous n'avez pas de <a href="https://wkhtmltopdf.org/downloads.html">wkhtmltopdf</a> installé
+            sur votre machine. Dans ce cas, il suffit de suivre le <a href="https://wkhtmltopdf.org/downloads.html">lien</a> et l'installer selon
+            le système d'exploitation de votre ordinateur.
+        </p>
+
+    </div>
+
+{% endblock %}
+{% block javascripts %}{% endblock %}

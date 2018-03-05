@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}++ {% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{{ asset('css/normalize.css') }}" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Anton|Pacifico" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
+        <script src="{{ asset('js/jquery-3.3.1.js') }}"></script>
+
+        <link rel="stylesheet" href="{{ asset('css/stylesheet.css') }}" />
+    {% endblock %}
+</head>
+<body>
+
+<main class="container">
+    {% for message in app.session.flashbag.get('info') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% for message in app.session.flashbag.get('errors') %}
+        <div class="alert alert-danger">
+            Cher(e) {{ app.user.username }}, {{ message }}
+        </div>
+    {% endfor %}
+
+    {% for message in app.session.flashbag.get('deny') %}
+        <div class="deny-access">
+            {{ app.user.username }}, {{ message }}
+        </div>
+    {% endfor %}
+    {% block body %}{% endblock %}
+</main>
+
+
+<script src="{{ asset('js/myJs.js') }}"></script>
+
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function(){
+            $('p').addClass('empty');
+        });
+    </script>
+{% endblock %}
+</body>
+</html>

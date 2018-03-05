@@ -1,0 +1,312 @@
+{% extends 'simpleBase.html.twig' %}
+
+{% block title %}
+    {{ parent() }}my CV
+{% endblock %}
+
+{% block body %}
+
+
+
+
+        <div class="cont">
+
+
+            <!--- POPUP de la BARRE  des BOUTONS ------------------>
+            <aside>
+
+                {% if app.user %}
+                    {% if app.user.hasRole('ROLE_ADMIN') or item.isAuthor(app.user) %}
+                        <button class="delete">
+                            <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+                        </button>
+                        <a class="button" href ="{{ path('editcurriculum', {'slug': item.slug}) }}">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+
+                        </a>
+                    {% endif %}
+                {% endif %}
+
+                <a class="button" href ="{{ path('generatePdf', {'id': item.id}) }}">
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+
+                </a>
+
+                <!-- AddToAny BEGIN -->
+
+                <div id="share" class="a2a_kit a2a_kit_size_32 a2a_default_style">
+                    <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                </div>
+
+
+            </aside>
+            <!------------------------------------------------->
+
+
+
+            <!--- POPUP de CONFIRMATION POUR SUPPRIMER UN CV -->
+
+            <div id="popup-delete">
+                <p>ATTENTION !</p>
+
+                <P>Vous êtes en train de supprimer un de vos CV.</P>
+
+                <p>Etes vous sûr de vouloir continuer ?</P>
+
+
+                <a class="btn btn-primary" href="{{ path('removeItem', {'id': item.id}) }}">OUI
+                </a>
+                <button class="btn btn-default" id="cancel">NON</button>
+            </div>
+            <!--------------------------------------------------->
+
+
+
+           <section class="cv-header">
+
+               {% if item.image %}
+                   <div class="{% if item.image.imageFile is null %}empty{% else %}photo{% endif %}">
+                       <img src="{{ vich_uploader_asset(item.image, 'imageFile') }}" alt="{{ item.image.imageName }}" />
+                   </div>
+               {% endif %}
+
+               <div class="inline">
+                   <h2>{{ item.title }}</h2>
+                   <div id="address">
+                       <h1>{{ item.firstName | upper }}</h1>
+                       <p>{{ item.address }}</p>
+                       <p class="header-address">{{ item.zip }}</p>
+                       <p class="header-address">{{ item.city }}</p>
+                   </div>
+                   <div id="coord">
+                       <h1>{{ item.name | upper }}</h1>
+                       {% if app.user %}
+                           <p>{{ item.telephone }}</p>
+                       {% else %}
+                           <p><span>Tel invisible pour les anonymes</span></p>
+                       {% endif %}
+
+
+                       {% if app.user %}
+                            <p>{{ item.email }}</p>
+                       {% else %}
+                           <p><span>Email invisible pour les anonymes</span></p>
+                       {% endif %}
+                   </div>
+               </div>
+
+           </section>
+
+
+            <section class="cv-skills">
+                <div class="fa-icon">
+                    <i class="fa fa-cogs fa-3x" aria-hidden="true"></i>
+                </div>
+
+                <div class="title-category">
+                    <h3>Compétences</h3>
+                </div>
+                <div class="content">
+                    <article>
+                        <div class="sector">Informatique</div>
+                        {% if item.skills.languages %}
+                            <p>{{ item.skills.languages }}</p>
+                        {% endif %}
+
+                    </article>
+                    <article>
+                        <div class="{% if item.skills.sector1 is empty %}empty{% else %}sector{% endif %}">{{ item.skills.sector1 }}</div>
+                        {% if item.skills.sector1Content %}
+                            <p>{{ item.skills.sector1Content }}</p>
+                        {% endif %}
+                    </article>
+                    <article>
+                        <div class="{% if item.skills.sector2 is empty %}empty{% else %}sector{% endif %}">{{ item.skills.sector2 }}</div>
+
+                        {% if item.skills.sector2Content %}
+                            <p>{{ item.skills.sector2Content }}</p>
+                        {% endif %}
+
+                    </article>
+                    <article>
+                        <div class="{% if item.skills.sector3 is empty %}empty{% else %}sector{% endif %}">{{ item.skills.sector3 }}</div>
+
+                        {% if item.skills.sector3Content %}
+                            <p>{{ item.skills.sector3Content }}</p>
+                        {% endif %}
+
+                    </article>
+
+                </div>
+            </section>
+
+            <section class="cv-education">
+                <div class="fa-icon">
+                    <i class="fa fa-graduation-cap fa-3x" aria-hidden="true"></i>
+                </div>
+                <div class="title-category">
+                    <h3>Formations</h3>
+                </div>
+                <div class="content">
+                    <article>
+                        <div class="sector">Informatique</div>
+                        <p>{{ item.education.informatics }}</p>
+                    </article>
+                    <article>
+                        <div class="{% if item.education.otherSector1 is empty %}empty{% else %}sector{% endif %}">{{ item.education.otherSector1 }}</div>
+
+                        {% if item.education.otherSector1Content %}
+                            <p>{{ item.education.otherSector1Content }}</p>
+                        {% endif %}
+
+                    </article>
+                    <article>
+                        <div class="{% if item.education.otherSector2 is empty %}empty{% else %}sector{% endif %}">{{ item.education.otherSector2 }}</div>
+
+
+                        {% if item.education.otherSector2Content %}
+                            <p>{{ item.education.otherSector2Content }}</p>
+                        {% endif %}
+
+                    </article>
+                    <article>
+                        <div class="{% if item.education.otherSector3 is empty %}empty{% else %}sector{% endif %}">{{ item.education.otherSector3 }}</div>
+
+                        {% if item.education.otherSector3Content %}
+                            <p>{{ item.education.otherSector3Content }}</p>
+                        {% endif %}
+                    </article>
+                </div>
+            </section>
+
+            <section class="cv-experience">
+                <div class="fa-icon">
+                    <i class="fa fa-hourglass-end fa-3x" aria-hidden="true"></i>
+                </div>
+                <div class="title-category">
+                    <h3>Expériences</h3>
+                </div>
+                <div class="content">
+                    {% if item.experience is not null %}
+                        <article>
+                            <div class="sector">Informatique</div>
+                            <p>{{ item.experience.informatics }}</p>
+                        </article>
+                        <article>
+                            <div class="{% if item.experience.otherSector1 is empty %}empty{% else %}sector{% endif %}">{{ item.experience.otherSector1 }}</div>
+
+                            {% if item.experience.otherSector1Content %}
+                                <p>{{ item.experience.otherSector1Content }}</p>
+                            {% endif %}
+
+                        </article>
+                        <article>
+                            <div class="{% if item.experience.otherSector2 is empty %}empty{% else %}sector{% endif %}">{{ item.experience.otherSector2 }}</div>
+
+                            {% if item.experience.otherSector2Content %}
+                                <p>{{ item.experience.otherSector2Content }}</p>
+                            {% endif %}
+                        </article>
+                        <article>
+                            <div class="{% if item.experience.otherSector3 is empty %}empty{% else %}sector{% endif %}">{{ item.experience.otherSector3 }}</div>
+
+                            {% if item.experience.otherSector3Content %}
+                                <p>{{ item.experience.otherSector3Content }}</p>
+                            {% endif %}
+                        </article>
+                    {% endif %}
+                </div>
+            </section>
+
+            <section class="cv-works">
+                <div class="fa-icon">
+                    <i class="fa fa-desktop fa-3x" aria-hidden="true"></i>
+                </div>
+                <div class="title-category">
+                    <h3>Travaux</h3>
+                </div>
+                <div class="content">
+                        <article>
+                            <div class="sector"><a href="{{ item.works.url1 }}">{{ item.works.url1 }}</a></div>
+
+                                <p>{{ item.works.description1 }}</p>
+
+                        </article>
+                        <article>
+                            <div class="{% if item.works.url2 is empty %}empty{% else %}sector{% endif %}">
+                                <a href="{{ item.works.url2 }}">{{ item.works.url2 }}</a></div>
+
+                            {% if item.works.description2 %}
+                                <p>{{ item.works.description2 }}</p>
+                            {% endif %}
+                        </article>
+                        <article>
+                            <div class="{% if item.works.url3 is empty %}empty{% else %}sector{% endif %}">
+                                <a href="{{ item.works.url3 }}">{{ item.works.url3 }}</a></div>
+
+                            {% if item.works.description3 %}
+                                <p>{{ item.works.description3 }}</p>
+                            {% endif %}
+                        </article>
+                </div>
+            </section>
+
+            <section class="cv-hobby">
+                <div class="fa-icon">
+                    <i class="fa fa-magnet fa-3x" aria-hidden="true"></i>
+                </div>
+                <div class="title-category">
+                    <h3>Hobbies</h3>
+                </div>
+                <div class="content">
+                    {% if item.hobby is not null %}
+                        <article>
+                            <div class="sector">{{ item.hobby.area1 }}</div>
+                            <p>{{ item.hobby.content1 }}</p>
+                        </article>
+                        <article>
+                            <div class="{% if item.hobby.area2 is empty %}empty{% else %}sector{% endif %}">{{ item.hobby.area2 }}</div>
+
+                            {% if item.hobby.content2 %}
+                                <p>{{ item.hobby.content2 }}</p>
+                            {% endif %}
+
+                        </article>
+                        <article>
+                            <div class="{% if item.hobby.area3 is empty %}empty{% else %}sector{% endif %}">{{ item.hobby.area3 }}</div>
+
+                            {% if item.hobby.content3 %}
+                                <p>{{ item.hobby.content3 }}</p>
+                            {% endif %}
+
+                        </article>
+                        <article>
+                            <div class="{% if item.hobby.area4 is empty %}empty{% else %}sector{% endif %}">{{ item.hobby.area4 }}</div>
+
+                            {% if item.hobby.content4 %}
+                                <p>{{ item.hobby.content4 }}</p>
+                            {% endif %}
+
+                        </article>
+                    {% endif %}
+                </div>
+            </section>
+
+        </div>
+
+
+
+
+
+    <script async src="https://static.addtoany.com/menu/page.js"></script>
+    <!-- AddToAny END -->
+
+    <p class="htmltopdf-message">
+        * <span>!mportant:</span> si vous n'arrivez pas à télécharger un PDF, probablement,
+        vous n'avez pas de <a href="https://wkhtmltopdf.org/downloads.html">wkhtmltopdf</a> installé
+        sur votre machine. Dans ce cas, il suffit de suivre le <a href="https://wkhtmltopdf.org/downloads.html">lien</a> et l'installer selon
+        le système d'exploitation de votre ordinateur.
+    </p>
+
+{% endblock %}
+{% block javascripts %}{% endblock %}

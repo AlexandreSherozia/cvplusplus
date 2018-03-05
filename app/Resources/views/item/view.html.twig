@@ -1,0 +1,31 @@
+	{% extends 'base.html.twig' %}
+
+{% block body %}
+	
+	<div class="container">
+
+  		 <h2>here are all your items !</h2>
+
+   	
+   		<div class = "jumbotron">
+
+   			{% for item in items %}
+
+   				Article numéro {{ item.id }}  :  {{ item.title }} <a href ="{{ path('item', {'id': item.id}) }}">View</a>
+
+				{% if app.user %}
+					{% if item.isAuthor(app.user) or app.user.hasRole('ROLE_ADMIN') %}
+						| <a href ="{{ path('editItem', {'id': item.id}) }}">Edit</a> | <a href ="{{ path('removeItem', {'id': item.id}) }}">Supprimer</a>{% endif %}
+				{% endif %}
+
+				<br />
+
+   			{% endfor %}
+
+   		</div>
+
+
+   </div>
+
+{% endblock %}
+{% block javascripts %}{% endblock %}

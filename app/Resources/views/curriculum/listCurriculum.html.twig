@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }}Tous les CVs
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+            <h2>{{ quantityCv }} curriculums publiés</h2>
+
+
+            <table class = "table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Catégorie</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">
+                        Date de publication
+                    </th>
+                    <th scope="col">
+                        Voir
+                    </th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for item in listCurriculums %}
+                    <tr>
+
+                        <td scope="row">{{ item.title | upper }}</td>
+
+                        <td>{{ item.firstname }}</td>
+
+                        <td>{{ item.name }}</td>
+
+                        <td>{{ item.date|date('d/m/Y') }}</td>
+
+                        <td>
+                            <a href ="{{ path('onecurriculum', {'slug': item.slug}) }}">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </a>
+                        </td>
+
+                    </tr>
+                {% endfor %}
+                <!--   Le code accessible selon les droits
+                    {% if app.user %}
+                        {% if app.user.hasRole('ROLE_ADMIN') %}
+                            | <a href ="{{ path('editcurriculum', {'slug': item.slug}) }}">Edit</a> | <a href ="{{ path('removeItem', {'id': item.id}) }}">Supprimer</a>{% endif %}
+                    {% endif %}    -->
+
+
+
+                </tbody>
+            </table>
+
+        <div class="navigation">
+            {{ knp_pagination_render(listCurriculums) }}
+        </div>
+
+    </div>
+
+    <p class="htmltopdf-message">
+        * Si vous n'arrivez pas à télécharger un PDF, probablement,
+        vous n'avez pas de <a href="https://wkhtmltopdf.org/downloads.html">wkhtmltopdf</a> installé
+        sur votre machine. Dans ce cas, il suffit de suivre le <a href="https://wkhtmltopdf.org/downloads.html">lien</a> et l'installer selon
+        le système d'exploitation de votre ordinateur.
+    </p>
+
+{% endblock %}
+{% block javascripts %}{% endblock %}
