@@ -36,14 +36,14 @@ $(document).ready(function() {
     });
 
 //-----------     APPARITION DU MENU DES BOUTONS    -----------
-
+/*
     $('.cont').mouseover(function(){
         $('aside').css('display', 'block');
     });
     $('.cont').mouseout(function(){
         $('aside').css('display', 'none');
     });
-
+*/
 
     /*$('.error-list').css('background-color', 'red');*/
 

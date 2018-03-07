@@ -24,18 +24,8 @@
                    </div>
                    <div id="coord">
                        <h1>{{ item.name | upper }}</h1>
-                       {% if app.user %}
                            <p>{{ item.telephone }}</p>
-                       {% else %}
-                           <p><span>Tel invisible pour les anonymes</span></p>
-                       {% endif %}
-
-
-                       {% if app.user %}
                            <p>{{ item.email }}</p>
-                       {% else %}
-                           <p><span>Email invisible pour les anonymes</span></p>
-                       {% endif %}
                    </div>
                </div>
 

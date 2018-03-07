@@ -129,7 +129,7 @@ class Header
 
 
     /**
-     * @ORM\Column(name="published", type="boolean", options={"default":false})
+     * @ORM\Column(name="published", type="boolean", nullable=true, options={"default":false})
      */
     private $published;
 

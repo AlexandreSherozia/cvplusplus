@@ -587,10 +587,9 @@
                             </label>
                         </div>
                     {% else %}
-                        <button class="btn btn-success">
-                            {{ form_widget(form.published) }}
-                        </button>
-
+                        <label for="published" class="form-check">
+                                {{ form_widget(form.published) }}
+                        </label>
                     {% endif %}
 
                 </div>
@@ -609,10 +608,8 @@
 
     </div>
     <p class="htmltopdf-message">
-        * Si vous n'arrivez pas à télécharger un PDF, probablement,
-        vous n'avez pas de <a href="https://wkhtmltopdf.org/downloads.html">wkhtmltopdf</a> installé
-        sur votre machine. Dans ce cas, il suffit de suivre le <a href="https://wkhtmltopdf.org/downloads.html">lien</a> et l'installer selon
-        le système d'exploitation de votre ordinateur.
+        * <span>!mportant:</span>Ce site est en version béta et est hébergé sur un serveur mutualisé,
+        ce qui rend impossible l'installation du générateur de PDF. Ce service sera bientôt disponible.
     </p>
 
 {% endblock %}

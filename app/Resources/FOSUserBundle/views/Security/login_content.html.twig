@@ -6,7 +6,7 @@
 
 
     <fieldset class="fos_user_bundle">
-        <legend>Si vous avez un compte, identifiez-vous</legend>
+        <legend>Identifiez-vous</legend>
         <form action="{{ path("fos_user_security_check") }}" method="post">
             {% if csrf_token %}
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />

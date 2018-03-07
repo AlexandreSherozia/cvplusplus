@@ -6,32 +6,17 @@ body {
 	background-color: #edf0ec;
 }
 
-main{
-	min-height: 600px;
-	}
-
+.minheight{
+	margin-top: 30px;
+	min-height: 500px;
+}
 
 
 .navbar-brand{
 	font-family: 'Pacifico', cursive;
-	width: 80px;
-	/*background-position: 2px;
-	background-image: url('../assets/cv_button.png');
-	-webkit-background-size: cover;
-	background-size: cover;*/
 }
-.navbar{
-	background-color: #a3cb37;
-	padding-top: 0;
-}
-
-.navbar-default{
-	border: none;
-	border-radius: 0;
-}
-
-.navbar-default .navbar-nav li a{
-	color: #ffffff;
+.navbar-nav{
+	color: #58002b;
 }
 span{
 	color: #8e002e;
@@ -67,200 +52,24 @@ fieldset div{
 	text-align: right;
 }
 
-fieldset.fos_user_bundle .mini-inline,
-fieldset.fos_user_bundle .inline{
-	vertical-align: middle;
-}
-
-fieldset.fos_user_bundle legend{
-	margin: 0 auto;
-}
-
-
-.error-wrapper-mini-inline,
-.error-wrapper-inline,
-.error-wrapper-inline-equal,
-.error-wrapper-inline-full,
-.photo-uploader{
-	display: inline-block;
-	vertical-align: top;
-	background: #f2dede;
-	width: 39%;
-	color: #a01f06;
-	-webkit-border-radius:5px;
-	-moz-border-radius:5px;
-	border-radius:5px;
-	border: 1px solid #f2c7cf;
-	padding: 3px 1px 1px;
-	margin: 2px 0;
-}
-
-
-
-.error-wrapper-inline{
-	width: 59%;
-}
-
-.error-wrapper-inline-equal{
-	width: 49%;
-}
-
-.error-wrapper-inline-full{
-	width: 100%;
-}
-
-div.alert.alert-danger{
-	padding: 3px 2px;
-}
-
-.photo-uploader{
-	position: relative;
-	background: #e6fbf5;
-	width: 49%;
-	padding: 30px;
-	margin-bottom: 10px;
-}
-
-.photo-uploader-popup{
-	display: none;
-	position: absolute;
-	bottom: 55px;
-	left: 160px;
-	width: 140px;
-	border: 1px solid #f0cfe3;
-	background-color: #fbf3f7;
-	font-size: 0.9em;
-	text-align: center;
-	border-radius: 5px;
-	padding: 10px;
-	box-shadow: 0 20px 50px 10px grey;
-}
-
-.photo-uploader-popup img{
-	display: block;
-	border: 1px solid #f0fff4;
-	width: 100%;
-}
-
-button#show-cv-exemple{
-	width: 70%;
-	margin: 20px 0;
-	outline:none;
-}
-
-img#cv-exemple{
-	display: none;
-	width: 550px;
-	margin:0 auto;
-}
-
-
-.delete{
-	background-color: #2961f0;
-	display: inline-block;
-	width: 31px;
-	height: 31px;
-	padding: 5px;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
-	outline: none;
-}
-
-.deny-access{
-	margin-top: 50px;
-	padding: 30px;
-	-webkit-border-radius:5px;
-	-moz-border-radius:5px;
-	border-radius:5px;
-	background-color: #ff6669;
-}
-
-
-.htmltopdf-message{
-	border-top: 1px solid #d4e6e8;
-	margin: 30px;
-	padding: 30px;
-}
-
-
-#popup-delete{
-	display: none;
-	color: #090012;
-	position: fixed;
-	left: 40%;
-	top: 320px;
-	width: 400px;
-	background-color: #d3fbd3;
-	border-radius: 5px;
-	border: 7px double #ba452d;
-	padding: 20px 10px;
-	box-shadow: 0 20px 50px 10px grey;
-}
-
-.form-control-file{
-	margin: 0 auto;
-	padding: 5px 0 5px 5px;
-	font-weight: normal;
-}
-
-article{
-	margin: 10px 0;
-}
-
-div.important{
-	position: relative;
-	background-color: #e2faff;
-	border-radius: 5px;
-	border: 1px dotted #5b2d2d;
-	padding: 15px;
-	margin: 40px 0 30px;
-	text-align: justify;
-}
-
-.important img#tips-logo{
-	position: absolute;
-	left: -20px;
-	top: -20px;
-	display: block;
-	width: 40px;
-}
-
-
 
 
 /******************** HEADER *******************/
 
 .banner{
 	position: relative;
-	height: 300px;
-	background-color: #337ab7;
-	/*background-image: url('../assets/cover.jpg');
+	height: 500px;
+	background-image: url('../assets/cover.jpg');
 	background-repeat: no-repeat;
 	background-position: center;
-	background-size: cover;*/
+	background-size: cover;
 }
-
-.banner img#logo{
-	position: absolute;
-	left: -5px;
-	display: block;
-	width: 370px;
-}
-
-.banner img#manpencil{
-	position: absolute;
-	right: 10%;
-	bottom: 4px;
-	width: 149px;
-}
-
 header .banner h1{
-	font-size: 3.6em;
+	font-size: 3.3em;
 	margin: 0;
-	padding-top: 94px;
+	padding-top: 160px;
 	text-align: center;
-	color: #ffffff;
+	color: #f0fff4;
 }
 
 header .banner h2{
@@ -268,20 +77,9 @@ header .banner h2{
 	margin: 0;
 	margin-top: 20px;
 	text-align: center;
-	color: #ffffff;
+	color: #f0fff4;
 	font-family: 'Montserrat', sans-serif;
 }
-
-
-#navbar{
-	width: 430px;
-	margin: 0 auto;
-}
-
-.navbar-default .navbar-brand{
-	color: #868686;
-}
-
 
 .connection {
 	padding-top: 30px;
@@ -291,128 +89,34 @@ header .banner h2{
 	right: 20px;
 }
 
-.vich-image a:nth-child(odd){
-	display: none;
-	
-}
-
-.vich-image a img{
-	display: block;
-	border: 3px solid #edf0ec;
-	-webkit-border-radius:5px;
-	-moz-border-radius:5px;
-	border-radius:5px;
-	margin: 20px auto;
-	width: 100%;
-}
-
-#mail{
-	background-color: #fcfffb;
-	border-radius: 4px;
-	border: 3px solid #5db249;
-	padding: 4px 8px;
-	text-align: left;
-	overflow: hidden;
-}
-#mail .fa{
-	color: #5db249;
-}
-
 /***********  FOOTER   ***************/
-#share-box{
-	margin: 0 auto;
-	text-align: center;
-	width: 144px;
-}
+
 
 footer{
-	position: relative;
-	color: #ecf6f7;
-	margin-top: 20px;
 	text-align: center;
-	padding:45px;
+	padding:120px;
+	height: 300px;
 	font-size: 0.8em;
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#edf0ec+0,a1c935+2,a1c935+5,42775b+6,42775b+100 */
-	background: #edf0ec; /* Old browsers */
-	background: -moz-linear-gradient(top, #edf0ec 0%, #a1c935 2%, #a1c935 5%, #42775b 6%, #42775b 100%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(top, #edf0ec 0%,#a1c935 2%,#a1c935 5%,#42775b 6%,#42775b 100%); /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(to bottom, #edf0ec 0%,#a1c935 2%,#a1c935 5%,#42775b 6%,#42775b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#edf0ec', endColorstr='#42775b',GradientType=0 ); /* IE6-9 */
-}
-footer a{
-	color: #fffaeb;
-}
-
-img#logo-beta{
-	display: block;
-	width: 120px;
-	position: absolute;
-	right: 0;
-	top: 9px;
-}
-
-img#cvplus_logo{
-	display: block;
-	width: 50px;
-	margin: 0 auto 20px;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#dceef0+0,aabdbf+93,aabdbf+93 */
+	background: #dceef0; /* Old browsers */
+	background: -moz-linear-gradient(top, #dceef0 0%, #aabdbf 93%, #aabdbf 93%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #dceef0 0%,#aabdbf 93%,#aabdbf 93%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #dceef0 0%,#aabdbf 93%,#aabdbf 93%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dceef0', endColorstr='#aabdbf',GradientType=0 ); /* IE6-9 */
 }
 
 
 
 
-/********** LANDING page ***********/
+/********** page principale ***********/
 
-ul{
-	list-style-type: none;
-}
-ul article{
-	margin: 20px auto;
-	padding: 15px;
-	/*border: 1px solid #f0cfe3;
-	-webkit-border-radius:5px;
-	-moz-border-radius:5px;
-	border-radius:5px;*/
+.home-text{
 	text-align: justify;
 }
-li{
-	text-align: center;
-}
-.homepage{
-	margin: 0 auto;
-	max-width: 800px;
-}
-.homepage > p{
-	text-align: center;
-}
-.homepage article{
-
-}
-.home-photo{
-	margin: 0 auto;
-	overflow: hidden;
-	width: 100px;
-	height: 100px;
-	border: 3px solid #a3cb37;
-	-webkit-border-radius:50%;
-	-moz-border-radius:50%;
-	border-radius:50%;
-}
-.home-photo img{
-	display: block;
-	width: 100%;
+.minheight h3{
+	margin: 0 0 10px 0;
 }
 
-.homepage .inline, .homepage .mini-inline{
-	vertical-align: middle;
-}
-
-.homepage .inline{
-	width: 84%;
-}
-
-.homepage .mini-inline{
-	width: 14%;
-}
 #avatar {
 	display: block;
 	float: left;
@@ -426,19 +130,18 @@ li{
 	margin:0;
 	padding:10px;
 	font-size:18px;
-	background: #e5fcf6;
-	border: 1px solid black;
+	background: #337ab7;
 	-webkit-border-radius:5px;
 	-moz-border-radius:5px;
 	border-radius:5px;
-	color: #ffe7fa;
+	color: #22436e;
 }
 #progressbar li{
 	display: inline-block;
 
 }
 .active{
-	color: #337ab7;
+	color: white;
 
 }
 
@@ -470,24 +173,20 @@ fieldset{
 	border-radius:5px;
 }
 .next_btn{
-	background-color: #fdfaff;
-	border: 2px solid #edf0ec;
+	background-color: #b9e4b0;
+	border: 1px solid #b5cfc6;
 	border-bottom-right-radius: 10px;
 	border-top-right-radius: 10px;
 	width: 50px;
 	padding: 2px;
-	outline: none;
-	box-shadow: 0 6px 8px -2px grey;
 }
 .pre_btn{
-	background-color: #fdfaff;
-	border: 2px solid #edf0ec;
+	background-color: #e48a89;
+	border: 1px solid #b5cfc6;
 	border-bottom-left-radius: 10px;
 	border-top-left-radius: 10px;
 	width: 50px;
 	padding: 2px;
-	outline: none;
-	box-shadow: 0 6px 8px -2px grey;
 }
 
 .formgroup fieldset{
@@ -516,33 +215,26 @@ fieldset{
 
 }
  .inline-equal, .mini-inline, .inline{
-	 display: inline-block;
-	 vertical-align: top;
-
- }
+	margin: 10px 0;
+}
 .inline-equal{
+	display: inline-block;
 	width: 49%;
 }
 .inline{
+	display: inline-block;
 	width: 59%;
+	vertical-align: middle;
 }
-
 .mini-inline{
+	display: inline-block;
 	width: 39%;
-	color: #090012;
+	vertical-align: middle;
 }
 
-.mini-inline p{
-	font-size: 0.9em;
-	padding: 5px;
-	border-radius: 5px;
-	background-color: #ecf6f7;
-
-}
 
 #address-input, #coord-input{
 	display: inline-block;
-	vertical-align: top;
 	width: 49%;
 }
 
@@ -555,7 +247,7 @@ fieldset{
 	text-align: right;
 	padding-right: 10px;
 }
-#coord-input .block, #address-input .block{
+#coord-input .block{
 	margin: 10px 0;
 }
 /******* #skills INPUT ********/
@@ -611,20 +303,6 @@ fieldset{
 	vertical-align: top;
 }
 
-label.form-check{
-	border: 1px dotted green;
-	border-radius: 5px;
-	padding: 10px;
-	width: 100%;
-}
-
-.checkbox, .checkbox-text{
-	text-align: left;
-	display: inline-block;
-	vertical-align: middle;
-	margin: 0;
-}
-
 
 /**********  FORMULAIRES OUTPUT  ***********/
 
@@ -633,34 +311,14 @@ label.form-check{
 /*****************HEADER DU FORMULAIRE*************/
 
 
-.photo{
-	border: 3px solid #edf0ec;
-	display: inline-block;
-	vertical-align: middle;
-	overflow: hidden;
-	width: 190px;
-	height: 190px;
-	margin-left: -60px;
-	margin-right: 50px;
-	margin-top: -15px;
-	/**transform: rotate(90deg);*/
-	-webkit-border-radius: 50%;
-	-moz-border-radius: 50%;
-	border-radius: 50%;
-}
-img{
-	display: block;
-	width: 190px;
-}
-
 .container {
 	text-align: center;
+
 }
 .cv-header{
 	background-color: #1c2848;
 	color: #f6fffd;
 	padding: 1cm;
-	font-family: Roboto, sans-serif;
 }
 .cv-header h2{
 	color: #fbfdfb;
@@ -670,7 +328,7 @@ img{
 }
 .cv-header h1{
 	color: #354c8c;
-	font-size: 2.2em;
+	font-size: 2.9em;
 	margin: 0;
 	padding: 0.4em 0;
 }
@@ -710,46 +368,10 @@ pour une x raison, avec -14px plus de marges indésirabes à gauche !*/
 	height: 6.19cm;
 }
 
-.cont{
-	position: relative;
+.buttons-box{
+	padding: 20px;
 }
 
-.button{
-	background-color: #4362f6;
-	display: inline-block;
-	width: 31px;
-	height: 31px;
-	padding: 5px;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
-}
-
-aside{
-	/*display: none;*/
-	position: absolute;
-	right: 34px;
-	padding: 18px;
-
-}
-
-aside .fa{
-	color: #ffffff;
-}
-
-aside #share{
-	position: absolute;
-	right: -20px;
-	top: 18px;
-	-webkit-border-radius:50%;
-	-moz-border-radius:50%;
-	border-radius:50%;
-}
-aside #delete{
-	position: absolute;
-	right: 88px;
-	outline: none;
-}
 
 section.cv-skills{
 	background-color: #f6fffd;
@@ -823,20 +445,14 @@ table{
 }
 
 th,td{
-	text-align: center;
-}
-th:nth-child(1), td:nth-child(1){
 	text-align: left;
 }
 th{
-	background-color: #d4e6e8;
-	color: #15000a;
+	background-color: #28111a;
+	color: #afafaf;
 	font-weight: 100;
 }
-td a{
-	display: block;
-	width: 100%;
-}
+
 
 /**************** section FORMATIONS / EDUCATION *********/
 

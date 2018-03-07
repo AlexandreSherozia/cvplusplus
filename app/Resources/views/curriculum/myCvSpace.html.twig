@@ -26,7 +26,7 @@
 
 
 
-            <h2>Espace personnel de {{ app.user }}</h2>
+            <h2>E-CV-space de {{ app.user }}</h2>
 
             {% for message in app.session.flashbag.get('warning') %}
                 <div class="alert alert-warning">
@@ -95,7 +95,7 @@
                                 </td>
 
                                 <td>
-                                    <a href ="{{ path('generatePdf', {'id': item.id}) }}">
+                                    <a href ="#<!--{{ path('generatePdf', {'id': item.id}) }}-->">
                                         <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
                                     </a>
                                 </td>

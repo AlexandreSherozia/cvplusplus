@@ -27,7 +27,7 @@
                     {% endif %}
                 {% endif %}
 
-                <a class="button" href ="{{ path('generatePdf', {'id': item.id}) }}">
+                <a class="button" href ="#<!--{{ path('generatePdf', {'id': item.id}) }}-->">
                     <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
 
                 </a>
@@ -302,10 +302,8 @@
     <!-- AddToAny END -->
 
     <p class="htmltopdf-message">
-        * <span>!mportant:</span> si vous n'arrivez pas à télécharger un PDF, probablement,
-        vous n'avez pas de <a href="https://wkhtmltopdf.org/downloads.html">wkhtmltopdf</a> installé
-        sur votre machine. Dans ce cas, il suffit de suivre le <a href="https://wkhtmltopdf.org/downloads.html">lien</a> et l'installer selon
-        le système d'exploitation de votre ordinateur.
+        * <span>!mportant:</span>Ce site est en version béta et hébérgé sur un serveur mutualisé,
+        ce qui ne permet pas d'installer le générateur de PDF. Ce service sera bientôt disponible.
     </p>
 
 {% endblock %}
